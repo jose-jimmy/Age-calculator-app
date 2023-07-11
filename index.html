@@ -20,28 +20,32 @@
         <div class="input-section">
           <form id="main-form">
 
-            <label for="day">DAY</label>
-            <input type="number" id="day" placeholder="DD" min="1" max="31" data-day />
-            <span id="error-day" class="error"></span>
+            <section>
+              <label for="day">DAY</label>
+              <input type="number" id="day" placeholder="DD" min="1" max="31" data-day />
+              <span id="error-day" class="error"></span>
+            </section>
 
-            <label for="month">MONTH</label>
-            <input type="number" id="month" placeholder="MM" min="1" max="12" data-month />
-            <span id="error-month" class="error"></span>
+            <section>
+              <label for="month">MONTH</label>
+              <input type="number" id="month" placeholder="MM" min="1" max="12" data-month />
+              <span id="error-month" class="error"></span>
+            </section>
 
-
-            <label for="year">YEAR</label>
-            <input type="number" id="year" placeholder="YYYY" min="1900" data-year />
-            <span id="error-year" class="error"></span>
-
-
-            <div class="middle">
-              <hr />
-              <button type="submit" class="button">
-                <img src="./assets/images/icon-arrow.svg" alt="Arrow">
-              </button>
-              <hr class="right-line" />
-            </div>
+            <section>
+              <label for="year">YEAR</label>
+              <input type="number" id="year" placeholder="YYYY" min="1900" data-year />
+              <span id="error-year" class="error"></span>
+            </section>
           </form>
+        </div>
+
+        <div class="middle">
+          <hr />
+          <button type="submit" class="button">
+            <img src="./assets/images/icon-arrow.svg" alt="Arrow">
+          </button>
+          <hr class="right-line" />
         </div>
 
         <!--Bottom output section-->
@@ -53,11 +57,11 @@
             <p data-number="months">--<span>months</span></p>
           </div>
           <div class="output">
-            <p data-number="days">-- <span>days</span>
-            </p>
+            <p data-number="days">-- <span>days</span></p>
           </div>
         </div>
       </div>
+    </div>
   </main>
 
   <script src="script.js"></script>
