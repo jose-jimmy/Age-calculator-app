@@ -178,22 +178,47 @@ input[type="number"] {
     align-items: center;
 }
 
+.button{
+    position: relative;
+    background: transparent;
+    border: none;
+    z-index: 10;
+    padding: 0;
+}
+
 .button img{
     cursor: pointer;
     border: none;
     border-radius: 100%;
-    background-color:var(--clr-primary-purple);
-    place-content: center;
+    background:var(--clr-primary-purple);
     padding: 1.2rem;
     outline: 2px solid var(--clr-primary-purple);
     outline-offset: -2px;
     transition: 0.3s;
 }
 
-
-.button:is(:hover, :focus){
-    background-color: var(--clr-neutral-black);
+.middle::after{
+        content: '';
+        width: 100%;
+        background: var(--clr-neutral-grey-400);
+        position: absolute;
 }
+
+.button img:hover::after{
+    scale: 0.95;
+}
+
+.button img:hover{
+    background: var(--clr-neutral-black);
+    outline: 2px solid var(--clr-neutral-black);
+    outline-offset: 3px;
+    scale: 1.05;
+}
+
+.button img:active{
+    scale: 0.95;
+}
+
 
 hr{
     flex:1;
