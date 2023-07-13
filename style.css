@@ -96,8 +96,8 @@ body{
 
 .main-container{
     background-color: var(--clr-neutral-white-100);
-    border-radius: 1rem 1rem 10rem 1rem;
-    width: 700px;
+    border-radius: 2rem 2rem 10rem 2rem;
+    width: 750px;
     height: 550px;
     display: flex;
     flex-direction: column;
@@ -133,22 +133,19 @@ label{
     color:var(--clr-neutral-grey-400)
 }
 
-.input-section[data-error] label{
-    color: var(--clr-primary-red);
-}
-
-.input-section[data-error] input{
-    color: var(--clr-primary-red);
-    border: solid 1px var(--clr-primary-red);
-}
-
 .error{
     font-size: 0.75rem;
     font-style: italic;
     font-weight: var(--fw-400i);
     color: var(--clr-primary-red);
-    position: absolute;
-    bottom: -25%;
+}
+
+.active {
+    color: hsl(0, 100%, 67%);
+}
+
+.error-Active {
+    border-color: hsl(0, 100%, 67%) !important;
 }
 
 input{
@@ -239,25 +236,26 @@ hr{
     margin-top: -40px;
 }
 .output-section p{
-    font-size: 5rem;
-    color: var(--clr-primary-purple);
+    font-size: 4.5rem;
+    color: var(--clr-neutral-black);
     font-weight: var(--fw-700);
     font-style: italic;
-    letter-spacing: 1.5px;
+    letter-spacing: 3px;
 }
 
 .output-section p span{
-    color: var(--clr-neutral-black);
-    padding-left: 10px;
+    color: var(--clr-primary-purple);
+    padding-right: 10px;
 }
 
 /*Media Queries mobile screen*/
 @media screen and (max-width:710px){
     .main-container{
         width: 350px;
-        height: 500px;
+        height: 600px;
         position: relative;
         transition: smooth 0.3s;
+        border-radius: 1rem 1rem 8rem 1rem;
     }
 
     .sub-container{
@@ -277,17 +275,31 @@ hr{
         padding-top: 20px;
         padding-bottom: 20px;
     }
+
+    .middle img{
+        padding: 1.6rem;
+    }
     .output-section{
         margin-top: 40px;
     }
 
     .output{
-       padding-top: 15px; 
+        padding-top: 15px; 
     }
     .output-section p{
         font-size: 3rem;
     }
     .output-section p span{
         padding-left: 5px;
+    }
+}
+
+/* REDUCE MOTION ========= */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
