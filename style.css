@@ -269,6 +269,11 @@ hr{
         width: 90px;
     }
 
+    .error{
+        position: absolute;
+        bottom: -3rem;
+    }
+
     .right-line{
         display: block;
     }
