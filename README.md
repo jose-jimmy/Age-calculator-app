@@ -34,7 +34,17 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](https://github.com/jose-jimmy/Images-in-readme/assets/88069006/1d164c88-7063-4ac3-bd83-84db94fd99bc)
+
+![](https://github.com/jose-jimmy/Images-in-readme/assets/88069006/ac62d571-3d57-4aa5-a480-b6e6c4dccf73)
+
+![](https://github.com/jose-jimmy/Images-in-readme/assets/88069006/7a77358c-768a-4fcf-9558-24af8b801253)
+
+
+
+![](https://github.com/jose-jimmy/Images-in-readme/assets/88069006/ff02b9fb-58f6-45dc-bad1-52aac4ee027f)
+
+![](https://github.com/jose-jimmy/Images-in-readme/assets/88069006/6989f07f-0c8c-4d19-ac0e-3d8c495e3065)
 
 ### Links
 
