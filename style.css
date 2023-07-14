@@ -138,6 +138,8 @@ label{
     font-style: italic;
     font-weight: var(--fw-400i);
     color: var(--clr-primary-red);
+    position: absolute;
+    bottom: -1.5rem;
 }
 
 .active {

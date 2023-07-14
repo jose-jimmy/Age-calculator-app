@@ -15,16 +15,16 @@ var label2 = document.querySelectorAll("label")[1];
 var label3 = document.querySelectorAll("label")[2];
 
 // this function ensures that user month input < 10 is prepended with a 0
-var updateText = function () {
+const updateText = function () {
   userMonth.value = ("00" + userMonth.value).slice(-2);
 };
 
-var updateText2 = function () {
+const updateText2 = function () {
   userDay.value = ("00" + userDay.value).slice(-2);
 };
 
-userMonth.addEventListener("Keyup", updateText, false);
-userDay.addEventListener("Keyup", updateText2, false);
+userMonth.addEventListener("Keyup", updateText);
+userDay.addEventListener("Keyup", updateText2);
 
 userDay.addEventListener("input", (e) => {
   dayError.textContent = "";
@@ -44,8 +44,6 @@ userYear.addEventListener("input", (e) => {
 
 //The submit event listener
 calculateBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-
   const isInvalid = userDay.value.length === 0;
   const isInvalid1 = userMonth.value.length === 0;
   const isInvalid2 = userYear.value.length === 0;
@@ -106,12 +104,6 @@ calculateBtn.addEventListener("click", (e) => {
     leapYear();
   }
 });
-function reload() {
-  location.reload();
-  userDay.value = "";
-  userMonth.value = "";
-  userYear.value = "";
-}
 
 //Leap Year function
 function leapYear() {
@@ -139,7 +131,9 @@ function leapYearTest() {
 function leapYearError() {
   var userDay = document.getElementById("day").valueAsNumber;
   if (userDay > 29) {
-    dayError.innerHTML = "Must be a valid day";
+    dayError.innerHTML = "There are only 29 days";
+    label1.classList.add("active");
+    document.getElementById("day").classList.add("error-Active");
   } else {
     calDate();
   }
@@ -151,6 +145,9 @@ function valiDate() {
   var userMonth = parseInt(document.getElementById("month").value);
   var userYear = parseInt(document.getElementById("year").value);
 
+  var userDayError = document.getElementById("day");
+  var userMonthError = document.getElementById("month");
+  var userYearError = document.getElementById("year");
   //current date
   var date = new Date();
   var currentDay = date.getDate();
@@ -173,6 +170,29 @@ function valiDate() {
     showError();
   } else if (userMonth > 12) {
     showError();
+  } else if (
+    (userMonth === 1 ||
+      userMonth === 3 ||
+      userMonth === 5 ||
+      userMonth === 7 ||
+      userMonth === 8 ||
+      userMonth === 10 ||
+      userMonth === 12) &&
+    userDay > 31
+  ) {
+    showError();
+    label1.classList.add("active");
+    userDayError.classList.add("error-Active");
+  } else if (
+    (userMonth === 4 ||
+      userMonth === 6 ||
+      userMonth === 9 ||
+      userMonth === 11) &&
+    userDay > 30
+  ) {
+    showError();
+    label1.classList.add("active");
+    userDayError.classList.add("error-Active");
   } else if (userMonth === 2 && userDay < 29) {
     calDate();
   } else if (
@@ -202,10 +222,26 @@ function valiDate() {
       dayError.textContent = "Must be a valid day";
       monthError.textContent = "Must be a valid Month";
       yearError.textContent = "Must be in the past";
+
+      label1.classList.add("active");
+      label2.classList.add("active");
+      label3.classList.add("active");
+
+      userDayError.classList.add("error-Active");
+      userMonthError.classList.add("error-Active");
+      userYearError.classList.add("error-Active");
     } else if (userYear === currentYear && userMonth > currentMonth) {
       dayError.textContent = "Must be a valid day";
       monthError.textContent = "Must be a valid month";
       yearError.textContent = "Must be in the past";
+
+      label1.classList.add("active");
+      label2.classList.add("active");
+      label3.classList.add("active");
+
+      userDayError.classList.add("error-Active");
+      userMonthError.classList.add("error-Active");
+      userYearError.classList.add("error-Active");
     } else if (
       userYear === currentYear &&
       userMonth === currentMonth &&
@@ -214,17 +250,56 @@ function valiDate() {
       dayError.textContent = "Must be a valid day";
       monthError.textContent = "Must be a valid month";
       yearError.textContent = "Must be in the past";
+
+      label1.classList.add("active");
+      label2.classList.add("active");
+      label3.classList.add("active");
+
+      userDayError.classList.add("error-Active");
+      userMonthError.classList.add("error-Active");
+      userYearError.classList.add("error-Active");
     } else if (userMonth > 12 && userDay > 31) {
       dayError.textContent = "Must be a valid day";
       monthError.textContent = "Must be a valid month";
+
+      label1.classList.add("active");
+      label2.classList.add("active");
+
+      userDayError.classList.add("error-Active");
+      userMonthError.classList.add("error-Active");
     } else if (userYear > currentYear) {
       yearError.textContent = "Must be in the past";
+      label3.classList.add("active");
+      userYearError.classList.add("error-Active");
     } else if (userMonth > 12) {
       monthError.textContent = "Must be a valid month";
+      label2.classList.add("active");
+      userMonthError.classList.add("error-Active");
+    } else if (
+      (userMonth === 1 ||
+        userMonth === 3 ||
+        userMonth === 5 ||
+        userMonth === 7 ||
+        userMonth === 8 ||
+        userMonth === 10 ||
+        userMonth === 12) &&
+      userDay > 31
+    ) {
+      dayError.textContent = "There are only 31 days";
+    } else if (
+      (userMonth === 4 ||
+        userMonth === 6 ||
+        userMonth === 9 ||
+        userMonth === 11) &&
+      userDay > 30
+    ) {
+      dayError.textContent = "There are only 30 days";
     } else if (userDay > 31) {
       dayError.textContent = "Must be a valid day";
     } else if (userMonth === 2 && userDay > 28) {
-      dayError.innerHTML = "Must be a valid day";
+      dayError.innerHTML = "There are only 28 days";
+      label1.classList.add("active");
+      userDayError.classList.add("error-Active");
     }
   }
 }
@@ -236,62 +311,24 @@ function calDate() {
   var userMonth = document.getElementById("month").valueAsNumber;
   var userYear = document.getElementById("year").valueAsNumber;
 
-  //store the number of days in each month in an array
-  var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
   //current date
-  var date = new Date();
-  var currentDay = date.getDate();
-  var currentMonth = date.getMonth() + 1;
-  var currentYear = date.getUTCFullYear();
+  const date = new Date(0);
+  const currentDay = date.getUTCDate();
+  const currentMonth = date.getUTCMonth();
+  const currentYear = date.getUTCFullYear();
 
   //resulting dates
-  var resultingMonth = 0;
-  var resultingDay = 0;
-  var resultingYear = 0;
+  var resultingMonth,
+    resultingDay,
+    resultingYear = 0;
 
-  if (userMonth === currentMonth && userDay === currentDay) {
-    resultingYear = currentYear - userYear;
-  } else if (userMonth === currentMonth && userDay < currentDay) {
-    resultingYear = currentYear - userYear;
-    resultingDay = Math.abs(currentDay - userDay);
-  } else if (userMonth === currentMonth && userDay > currentDay) {
-    resultingDay = daysInMonth[currentMonth - 1] - (userDay - currentDay);
-    resultingMonth = 12 - userMonth + (currentMonth - 1);
-    resultingYear = currentYear - 1 - userYear;
-  } else if (currentMonth > userMonth) {
-    if (userDay === 1) {
-      resultingDay = currentDay - 1;
-      resultingMonth = currentMonth - userMonth;
-    } else if (userDay === daysInMonth[userMonth - 1]) {
-      resultingDay = currentDay;
-      resultingMonth = currentMonth - 1 - userMonth;
-    } else if (userDay < currentDay) {
-      resultingDay = currentDay - userDay;
-      resultingMonth = currentMonth - 1 - userMonth;
-    } else {
-      var sum6 = 0;
-      sum6 = daysInMonth[userMonth - 2] - userDay;
-      resultingDay = sum6 + currentDay;
-      resultingMonth = currentMonth - 1 - userMonth;
-    }
+  //calculates the users age
+  const birthDate = new Date(`${userYear}-${userMonth}-${userDay}`);
+  const diff = new Date(Date.now() - birthDate.getTime());
 
-    resultingYear = currentYear - userYear;
-  } else if (currentMonth < userMonth) {
-    if (userDay === 1) {
-      resultingDay = currentDay;
-      resultingMonth = 12 - userMonth + currentMonth;
-    } else if (userDay === daysInMonth[userMonth - 1]) {
-      resultingDay = currentDay;
-      resultingMonth = 12 - userMonth + (currentMonth - 1);
-    } else {
-      var sum3 = 0;
-      sum3 = daysInMonth[currentMonth - 1] - userDay;
-      resultingDay = sum3 + currentDay;
-      resultingMonth = 12 - userMonth + (currentMonth - 1);
-    }
-    resultingYear = currentYear - 1 - userYear;
-  }
+  resultingYear = Math.abs(diff.getUTCFullYear() - currentYear);
+  resultingMonth = Math.abs(diff.getUTCMonth() - currentMonth);
+  resultingDay = Math.abs(diff.getUTCDate() - currentDay);
 
   //output message
   let text1 = document.getElementById("outputYear");
@@ -303,14 +340,7 @@ function calDate() {
     animate(text3, 100, resultingDay, 1000);
   };
   load();
-  reset1();
 }
-
-var reset1 = function () {
-  setTimeout(function () {
-    calculateBtn.reset();
-  }, 10000);
-};
 
 // Animation function
 
